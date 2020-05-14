@@ -46,6 +46,7 @@ def show_madlib_form():
     """ Get the user's response to the yes-or-no question """
 
     answer = request.args.get("YorN")
+
     if answer == "True":
         return render_template("game.html")
     else:
@@ -56,7 +57,13 @@ def show_madlib_form():
 def complete_madlib():
     """Returns completed madlib given user inputs"""
 
-    return render_template("madlib.html")
+    person = request.args.get("person")
+    color = request.args.get("color")
+    noun = request.args.get("noun")    
+    adjective = request.args.get("adjective")
+
+    return render_template("madlib.html", person=person, color=color,
+                            noun=noun, adjective = adjective)
 
 if __name__ == '__main__':
     # Setting debug=True gives us error messages in the browser and also
