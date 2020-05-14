@@ -41,6 +41,22 @@ def greet_person():
                            person=player,
                            compliment=compliment)
 
+@app.route('/game')
+def show_madlib_form():
+    """ Get the user's response to the yes-or-no question """
+
+    answer = request.args.get("YorN")
+    if answer == "True":
+        return render_template("game.html")
+    else:
+        return render_template("goodbye.html")
+
+
+@app.route('/madlib')
+def complete_madlib():
+    """Returns completed madlib given user inputs"""
+
+    return render_template("madlib.html")
 
 if __name__ == '__main__':
     # Setting debug=True gives us error messages in the browser and also
